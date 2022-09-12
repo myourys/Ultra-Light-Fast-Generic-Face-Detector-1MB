@@ -61,7 +61,7 @@ for file_path in listdir:
     boxes, labels, probs = predictor.predict(image, args.candidate_size / 2, args.threshold)
     sum += boxes.size(0)
     for i in range(boxes.size(0)):
-        box = boxes[i, :]
+        box = list(map(int,boxes[i, :].numpy()))
         cv2.rectangle(orig_image, (box[0], box[1]), (box[2], box[3]), (0, 0, 255), 2)
         # label = f"""{voc_dataset.class_names[labels[i]]}: {probs[i]:.2f}"""
         label = f"{probs[i]:.2f}"
